@@ -1,17 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Common">
+      <UniqueIdentifier>{8d65f528-f4e7-40ae-9a87-252587496541}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Linker">
+      <UniqueIdentifier>{c58a559c-fdf0-4ddc-a008-eebccca88861}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\Module.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SimpleArchive.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Linker\Linker.cpp">
+      <Filter>Linker</Filter>
+    </ClCompile>
+    <ClCompile Include="Linker\test_linker.cpp">
+      <Filter>Linker</Filter>
+    </ClCompile>
+    <ClCompile Include="Linker\test_module_loader.cpp">
+      <Filter>Linker</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\Module.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Payload.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SimpleArchive.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Linker\Linker.h">
+      <Filter>Linker</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

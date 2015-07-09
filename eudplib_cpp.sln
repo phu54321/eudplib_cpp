@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eudplib_cpp", "eudplib_cpp\eudplib_cpp.vcxproj", "{183C5A11-5361-4F45-ACA6-12CD28F99F3D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "linker", "linker\linker.vcxproj", "{905AE45E-12D9-4F4F-A122-B8168BC8F445}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -17,10 +15,6 @@ Global
 		{183C5A11-5361-4F45-ACA6-12CD28F99F3D}.Debug|Win32.Build.0 = Debug|Win32
 		{183C5A11-5361-4F45-ACA6-12CD28F99F3D}.Release|Win32.ActiveCfg = Release|Win32
 		{183C5A11-5361-4F45-ACA6-12CD28F99F3D}.Release|Win32.Build.0 = Release|Win32
-		{905AE45E-12D9-4F4F-A122-B8168BC8F445}.Debug|Win32.ActiveCfg = Debug|Win32
-		{905AE45E-12D9-4F4F-A122-B8168BC8F445}.Debug|Win32.Build.0 = Debug|Win32
-		{905AE45E-12D9-4F4F-A122-B8168BC8F445}.Release|Win32.ActiveCfg = Release|Win32
-		{905AE45E-12D9-4F4F-A122-B8168BC8F445}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
