@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="module.h" />
-    <ClInclude Include="payload.h" />
+    <ClInclude Include="SimpleArchive.h" />
+    <ClInclude Include="Module.hpp" />
+    <ClInclude Include="Payload.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="linker.cpp" />
     <ClCompile Include="test_linker.cpp" />
+    <ClCompile Include="SimpleArchive.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="Linker.cpp" />
+    <ClCompile Include="test_module_loader.cpp" />
   </ItemGroup>
 </Project>

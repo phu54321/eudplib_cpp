@@ -76,12 +76,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="module.h" />
-    <ClInclude Include="payload.h" />
+    <ClInclude Include="SimpleArchive.h" />
+    <ClInclude Include="Module.hpp" />
+    <ClInclude Include="Payload.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="linker.cpp" />
-    <ClCompile Include="test_linker.cpp" />
+    <ClCompile Include="Linker.cpp" />
+    <ClCompile Include="Module.cpp" />
+    <ClCompile Include="SimpleArchive.cpp" />
+    <ClCompile Include="test_linker.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test_module_loader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

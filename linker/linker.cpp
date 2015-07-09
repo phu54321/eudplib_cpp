@@ -1,4 +1,4 @@
-#include "module.h"
+#include "Module.hpp"
 
 #include <cstdio>
 
@@ -7,7 +7,7 @@
 #include <stack>
 #include <set>
 
-struct linkerState
+struct LinkerState
 {
 	bool hasError;
 	std::vector<ModulePtr> modules;
@@ -18,7 +18,7 @@ struct linkerState
 ///////
 
 
-bool buildLabelMap(linkerState& ls)
+bool buildLabelMap(LinkerState& ls)
 {
 	ls.labelMap.clear();
 
@@ -30,11 +30,11 @@ bool buildLabelMap(linkerState& ls)
 			if(it != ls.labelMap.end())
 			{
 				ModulePtr prevModule = it->second.first;
-				fprintf(stderr, "Linker error 5240 : Duplicate name \"%s\" exported from \"%s\" and \"%s\".",
+				fprintf(stderr, "[buildLabelMap] Error 5240 : Duplicate name \"%s\" exported from \"%s\" and \"%s\".\n",
 					exportEntry.exportName.c_str(), module->moduleIdentifier.c_str(), prevModule->moduleIdentifier.c_str());
 				ls.hasError = true;
 			}
-			else ls.labelMap[exportEntry.exportName] = std::make_pair(module, exportEntry.pointingPosition);
+			else ls.labelMap[exportEntry.exportName] = std::make_pair(module, exportEntry.pointeeOffset);
 		}
 	}
 
@@ -43,14 +43,14 @@ bool buildLabelMap(linkerState& ls)
 
 
 
-bool filterRequiredModules(linkerState& ls)
+bool filterRequiredModules(LinkerState& ls)
 {
 	const auto& labelMap = ls.labelMap;
 	const auto& modules = ls.modules;
 
 	if(modules.empty())
 	{
-		fprintf(stderr, "Linker error 7911 : No root module found.");
+		fprintf(stderr, "[filterRequiredModules] Error 7911 : No root module found.\n");
 	}
 
 	std::stack<ModulePtr> remainingModules;
@@ -74,7 +74,7 @@ bool filterRequiredModules(linkerState& ls)
 			auto it = labelMap.find(importEntry.importName);
 			if(it == labelMap.end())
 			{
-				fprintf(stderr, "Linker error 2563 : Unresolved name \"%s\" in \"%s\"",
+				fprintf(stderr, "[filterRequiredModules] Error 2563 : Unresolved name \"%s\" in \"%s\".\n",
 					importEntry.importName.c_str(), module->moduleIdentifier.c_str());
 				ls.hasError = true;
 			}
@@ -90,7 +90,7 @@ bool filterRequiredModules(linkerState& ls)
 
 
 
-PayloadPtr createPayload(linkerState& ls)
+PayloadPtr createPayload(LinkerState& ls)
 {
 	PayloadPtr payload = std::make_shared<Payload>();
 	
@@ -123,7 +123,7 @@ PayloadPtr createPayload(linkerState& ls)
 			std::pair<ModulePtr, size_t> pointee = ls.labelMap[importEntry.importName];
 			size_t pointeeOffset = moduleOffsetMap[pointee.first] + pointee.second;
 			size_t appendValue = (importEntry.importType == IMPORT_PRT) ? pointeeOffset >> 2 : pointeeOffset;
-			*(uint32_t*)(payloadData + moduleOffset + importEntry.appliedPosition) += appendValue;
+			*(uint32_t*)(payloadData + moduleOffset + importEntry.appliedOffset) += appendValue;
 		}
 
 		// Append prt, ort
@@ -138,7 +138,7 @@ PayloadPtr createPayload(linkerState& ls)
 
 PayloadPtr linkModules(const std::vector<ModulePtr>& modules)
 {
-	linkerState ls = { false, modules };
+	LinkerState ls = { false, modules };
 	if(!buildLabelMap(ls)) return nullptr;
 	if(!filterRequiredModules(ls)) return nullptr;
 	return createPayload(ls);

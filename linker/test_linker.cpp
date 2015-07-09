@@ -1,5 +1,5 @@
-#include "payload.h"
-#include "module.h"
+#include "Payload.hpp"
+#include "Module.hpp"
 
 PayloadPtr linkModules(const std::vector<ModulePtr>& modules);
 
