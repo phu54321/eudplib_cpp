@@ -1,5 +1,5 @@
 #include "Module.hpp"
-#include "SimpleArchive.h"
+#include "SimpleArchive.hpp"
 
 
 // Internal implementation
@@ -28,12 +28,22 @@ struct FileOffsetExportEntry
 Module::Module(const std::string& moduleIdentifier, std::istream& is)
 	: moduleIdentifier(moduleIdentifier)
 {
-	SimpleArchive arc(is);
-	const std::vector<uint8_t>& data = arc.getSectionContent(STR2U32("data"));
-	const std::vector<uint8_t>& prtData = arc.getSectionContent(STR2U32("prt "));
-	const std::vector<uint8_t>& ortData = arc.getSectionContent(STR2U32("ort "));
-	std::vector<uint8_t> importsData = arc.getSectionContent(STR2U32("impt"));
-	std::vector<uint8_t> exportsData = arc.getSectionContent(STR2U32("expt"));
+	bytes data, prtData, ortData, importsData, exportsData;
+
+	{
+		SimpleArchive arc(is);
+		if(!(
+			arc.getSectionContent('atad', data) &&
+			arc.getSectionContent(' trp', prtData) &&
+			arc.getSectionContent(' tro', ortData) &&
+			arc.getSectionContent('tpmi', importsData) &&
+			arc.getSectionContent('tpxe', exportsData)
+			))
+		{
+			fprintf(stderr, "Linker warning 539 : Module may be corrupted: one or more sections missing.");
+			throw std::bad_exception("Bad section");
+		}
+	}
 
 	// Read rawData
 	rawData.data = std::move(data);
@@ -48,11 +58,11 @@ Module::Module(const std::string& moduleIdentifier, std::istream& is)
 		for(size_t i = 0; i < prtn; i++)
 		{
 			if(prtArray[i] & 3)
-				fprintf(stderr, "[Module::Module] Warning 373 : Prt data #%d (%d) of module \"%s\" is not a multiple of 4. Will be ignored.\n",
+				fprintf(stderr, "Linker warning 373 : Prt data #%d (%d) of module \"%s\" is not a multiple of 4. Will be ignored.\n",
 				i + 1, prtArray[i], moduleIdentifier.c_str());
 
 			else if(prtArray[i] > maxRelocData)
-				fprintf(stderr, "[Module::Module] Warning 799 : Prt data #%d (%d) of module \"%s\" is too big ( > %d). Will be ignored\n",
+				fprintf(stderr, "Linker warning 799 : Prt data #%d (%d) of module \"%s\" is too big ( > %d). Will be ignored\n",
 				i + 1, prtArray[i], moduleIdentifier.c_str(), maxRelocData);
 
 			else
@@ -68,11 +78,11 @@ Module::Module(const std::string& moduleIdentifier, std::istream& is)
 		for(size_t i = 0; i < ortn; i++)
 		{
 			if(ortArray[i] & 3)
-				fprintf(stderr, "[Module::Module] Warning 3 : Ort data #%d (%d) of module \"%s\" is not a multiple of 4. Will be ignored.\n",
+				fprintf(stderr, "Linker warning 3 : Ort data #%d (%d) of module \"%s\" is not a multiple of 4. Will be ignored.\n",
 				i + 1, ortArray[i], moduleIdentifier.c_str());
 
 			else if(ortArray[i] > maxRelocData)
-				fprintf(stderr, "[Module::Module] Warning 479 : Ort data #%d (%d) of module \"%s\" is too big ( > %d). Will be ignored\n",
+				fprintf(stderr, "Linker warning 479 : Ort data #%d (%d) of module \"%s\" is too big ( > %d). Will be ignored\n",
 				i + 1, ortArray[i], moduleIdentifier.c_str(), maxRelocData);
 
 			else
@@ -92,14 +102,14 @@ Module::Module(const std::string& moduleIdentifier, std::istream& is)
 
 			if(ite.importType != IMPORT_PRT && ite.importType != IMPORT_ORT)
 			{
-				fprintf(stderr, "[Module::Module] Warning 962 : Import #%d (\"%s\", %06X) of module \"%s\" has invalid import type(%d). Will be ignored\n",
+				fprintf(stderr, "Linker warning 962 : Import #%d (\"%s\", %06X) of module \"%s\" has invalid import type(%d). Will be ignored\n",
 					i + 1, ite.name, ite.appliedOffset, moduleIdentifier.c_str(), ite.importType);
 				continue;
 			}
 
 			else if(ite.appliedOffset & 3)
 			{
-				fprintf(stderr, "[Module::Module] Warning 874 : Import #%d (\"%s\", %06X) of module \"%s\" applies to non-4byte-aligned offset. Will be ignored\n",
+				fprintf(stderr, "Linker warning 874 : Import #%d (\"%s\", %06X) of module \"%s\" applies to non-4byte-aligned offset. Will be ignored\n",
 					i + 1, ite.name, ite.appliedOffset, moduleIdentifier.c_str());
 				continue;
 			}
@@ -123,7 +133,7 @@ Module::Module(const std::string& moduleIdentifier, std::istream& is)
 
 			if(ete.pointeeOffset & 3)
 			{
-				fprintf(stderr, "[Module::Module] Warning 874 : Export #%d (\"%s\", %06X) of module \"%s\" points to non-4byte-aligned offset. Will be ignored\n",
+				fprintf(stderr, "Linker warning 874 : Export #%d (\"%s\", %06X) of module \"%s\" points to non-4byte-aligned offset. Will be ignored\n",
 					i + 1, ete.name, ete.pointeeOffset, moduleIdentifier.c_str());
 				continue;
 			}
@@ -137,7 +147,7 @@ Module::Module(const std::string& moduleIdentifier, std::istream& is)
 }
 
 
-std::vector<uint8_t> Module::convertToBytes() const
+bytes Module::toBytes() const
 {
 	// Calculate size of total payload
 	size_t payloadSize = 0;
@@ -148,7 +158,7 @@ std::vector<uint8_t> Module::convertToBytes() const
 	payloadSize += 8 + sizeof(FileOffsetExportEntry) * Exports.size();
 
 	// Create payload buffer
-	std::vector<uint8_t> output(payloadSize);
+	bytes output(payloadSize);
 	uint8_t* p = output.data();
 
 	// "data" section

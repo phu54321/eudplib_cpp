@@ -1,5 +1,4 @@
-#include "../Common/Payload.hpp"
-#include "../Common/Module.hpp"
+#include "Linker.hpp"
 
 PayloadPtr linkModules(const std::vector<ModulePtr>& modules);
 

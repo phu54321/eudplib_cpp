@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "Payload.hpp"
+#include "typedef.hpp"
 
 // Linker links multiple modules
 /*
@@ -52,7 +53,7 @@ struct Module
 	// Linker only should work with constructor-constructed  
 	Module(const std::string& moduleIdentifier) : moduleIdentifier(moduleIdentifier) {}
 	Module(const std::string& moduleIdentifier, std::istream& is);
-	std::vector<uint8_t> convertToBytes() const;
+	bytes toBytes() const;
 
 
 	std::string moduleIdentifier;

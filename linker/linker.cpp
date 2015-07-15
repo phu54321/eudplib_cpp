@@ -30,7 +30,7 @@ bool buildLabelMap(LinkerState& ls)
 			if(it != ls.labelMap.end())
 			{
 				ModulePtr prevModule = it->second.first;
-				fprintf(stderr, "[buildLabelMap] Error 5240 : Duplicate name \"%s\" exported from \"%s\" and \"%s\".\n",
+				fprintf(stderr, "Linker error 5240 : Duplicate name \"%s\" exported from \"%s\" and \"%s\".\n",
 					exportEntry.exportName.c_str(), module->moduleIdentifier.c_str(), prevModule->moduleIdentifier.c_str());
 				ls.hasError = true;
 			}
@@ -50,7 +50,7 @@ bool filterRequiredModules(LinkerState& ls)
 
 	if(modules.empty())
 	{
-		fprintf(stderr, "[filterRequiredModules] Error 7911 : No root module found.\n");
+		fprintf(stderr, "Linker error 7911 : No root module found.\n");
 	}
 
 	std::stack<ModulePtr> remainingModules;
@@ -74,7 +74,7 @@ bool filterRequiredModules(LinkerState& ls)
 			auto it = labelMap.find(importEntry.importName);
 			if(it == labelMap.end())
 			{
-				fprintf(stderr, "[filterRequiredModules] Error 2563 : Unresolved name \"%s\" in \"%s\".\n",
+				fprintf(stderr, "Linker error 2563 : Unresolved name \"%s\" in \"%s\".\n",
 					importEntry.importName.c_str(), module->moduleIdentifier.c_str());
 				ls.hasError = true;
 			}
@@ -101,7 +101,7 @@ PayloadPtr createPayload(LinkerState& ls)
 	{
 		moduleOffsetMap[module] = currentOffset;
 		// Round up to 4byte boundary : Each module's starting offset should be multiple of 4. (EUD works on dwords)
-		currentOffset += (module->rawData.size() + 3) & ~3;
+		currentOffset += (module->rawData.data.size() + 3) & ~3;
 	}
 	// now currentOffset is the total size of payload.
 	payload->data.resize(currentOffset);
@@ -112,7 +112,7 @@ PayloadPtr createPayload(LinkerState& ls)
 	{
 		uint8_t* moduleData = module->rawData.data.data();
 		size_t moduleOffset = moduleOffsetMap[module];
-		size_t moduleSize = module->rawData.size();
+		size_t moduleSize = module->rawData.data.size();
 
 		// Copy raw data
 		memcpy(payloadData + moduleOffset, moduleData, moduleSize);

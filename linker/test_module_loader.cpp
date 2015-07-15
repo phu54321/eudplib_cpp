@@ -46,6 +46,6 @@ int main()
 	std::istringstream ss(s);
 
 	Module m("test module", ss);
-	std::vector<uint8_t> v = m.convertToBytes();
+	bytes v = m.convertToBytes();
 	return 0;
 }

@@ -1,11 +1,11 @@
 #pragma once
 
+#include "../Linker/Payload.hpp"
+
 #include <cstdint>
 #include <vector>
 #include <string>
 #include <memory>
-
-#include "Payload.hpp"
 
 // Linker links multiple modules
 /*

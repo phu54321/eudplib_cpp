@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{905AE45E-12D9-4F4F-A122-B8168BC8F445}</ProjectGuid>
+    <ProjectGuid>{16C58C5D-2089-4F9E-A028-035FEB862ACE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>linker</RootNamespace>
+    <RootNamespace>modulelib_test</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,26 +76,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Linker.hpp" />
-    <ClInclude Include="SimpleArchive.hpp" />
-    <ClInclude Include="Module.hpp" />
-    <ClInclude Include="Payload.hpp" />
-    <ClInclude Include="typedef.hpp" />
+    <ClInclude Include="EUDObject.hpp" />
+    <ClInclude Include="Expr.hpp" />
+    <ClInclude Include="ModuleWriter.hpp" />
+    <ClInclude Include="ModuleWriterCollector.hpp" />
+    <ClInclude Include="ObjSpace.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Linker.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Module.cpp" />
-    <ClCompile Include="Payload.cpp" />
-    <ClCompile Include="SimpleArchive.cpp" />
-    <ClCompile Include="test_linker.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="test_module_loader.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Expr.cpp" />
+    <ClCompile Include="ModuleWriterCollector.cpp" />
+    <ClCompile Include="ObjSpace.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

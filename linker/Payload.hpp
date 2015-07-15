@@ -3,14 +3,19 @@
 #include <vector>
 #include <cstdint>
 #include <memory>
+#include <istream>
+
+#include "typedef.hpp"
 
 struct Payload
 {
-	std::vector<uint8_t> data;
+	Payload();
+	Payload(std::istream& is);
+	bytes toBytes() const;
+
+	bytes data;
 	std::vector<size_t> prt;
 	std::vector<size_t> ort;
-
-	size_t size() const { return data.size(); }
 };
 
 typedef std::shared_ptr<Payload> PayloadPtr;

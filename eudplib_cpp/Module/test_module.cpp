@@ -1,6 +1,6 @@
 // Use in conjunction with interactive debugger
 
-#include "../Common/Module.hpp"
+#include "Module.hpp"
 
 #include <sstream>
 #include <cassert>
@@ -47,5 +47,6 @@ int main()
 
 	ModulePtr module = deserializeModule("test module", ss);
 	std::vector<uint8_t> v = serializeModule(module);
+	_CrtDbgBreak();
 	return 0;
 }

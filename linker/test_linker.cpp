@@ -3,7 +3,7 @@
 
 PayloadPtr linkModules(const std::vector<ModulePtr>& modules);
 
-void hexDump(const std::vector<uint8_t>& data)
+void hexDump(const bytes& data)
 {
 	for(uint8_t ch : data)
 	{

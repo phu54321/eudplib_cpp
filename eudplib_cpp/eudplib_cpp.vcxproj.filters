@@ -1,42 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Common">
-      <UniqueIdentifier>{8d65f528-f4e7-40ae-9a87-252587496541}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Linker">
       <UniqueIdentifier>{c58a559c-fdf0-4ddc-a008-eebccca88861}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{5d660be5-4f9c-4d04-984a-065e4b79f97c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{8d65f528-f4e7-40ae-9a87-252587496541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModuleBuilder">
+      <UniqueIdentifier>{e86d9b6b-a145-4cd2-a4b3-3f0a4fa93a93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common\Module.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\SimpleArchive.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="Linker\Linker.cpp">
       <Filter>Linker</Filter>
     </ClCompile>
     <ClCompile Include="Linker\test_linker.cpp">
       <Filter>Linker</Filter>
     </ClCompile>
-    <ClCompile Include="Linker\test_module_loader.cpp">
-      <Filter>Linker</Filter>
+    <ClCompile Include="Module\Module.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Module\test_module.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SimpleArchive.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\Module.hpp">
-      <Filter>Common</Filter>
+    <ClInclude Include="Linker\Linker.hpp">
+      <Filter>Linker</Filter>
     </ClInclude>
-    <ClInclude Include="Common\Payload.hpp">
-      <Filter>Common</Filter>
+    <ClInclude Include="Module\Module.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="Linker\Payload.hpp">
+      <Filter>Linker</Filter>
     </ClInclude>
     <ClInclude Include="Common\SimpleArchive.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Linker\Linker.h">
-      <Filter>Linker</Filter>
+    <ClInclude Include="ModuleBuilder\EUDExpr.hpp">
+      <Filter>ModuleBuilder</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleBuilder\EUDObject.hpp">
+      <Filter>ModuleBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBuilder\ModuleBuilder.hpp">
+      <Filter>ModuleBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBuilder\RlocInt.hpp">
+      <Filter>ModuleBuilder</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ABI.txt" />
   </ItemGroup>
 </Project>

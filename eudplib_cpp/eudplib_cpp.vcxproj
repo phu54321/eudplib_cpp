@@ -11,23 +11,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common\Module.cpp" />
     <ClCompile Include="Common\SimpleArchive.cpp" />
     <ClCompile Include="Linker\Linker.cpp" />
     <ClCompile Include="Linker\test_linker.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Linker\test_module_loader.cpp">
+    <ClCompile Include="Module\Module.cpp" />
+    <ClCompile Include="Module\test_module.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\Module.hpp" />
-    <ClInclude Include="Common\Payload.hpp" />
     <ClInclude Include="Common\SimpleArchive.h" />
-    <ClInclude Include="Linker\Linker.h" />
+    <ClInclude Include="Linker\Linker.hpp" />
+    <ClInclude Include="Linker\Payload.hpp" />
+    <ClInclude Include="ModuleBuilder\EUDExpr.hpp" />
+    <ClInclude Include="ModuleBuilder\EUDObject.hpp" />
+    <ClInclude Include="ModuleBuilder\ModuleBuilder.hpp" />
+    <ClInclude Include="ModuleBuilder\RlocInt.hpp" />
+    <ClInclude Include="Module\Module.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\ABI.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{183C5A11-5361-4F45-ACA6-12CD28F99F3D}</ProjectGuid>

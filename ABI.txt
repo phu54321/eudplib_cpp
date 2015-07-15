@@ -1,0 +1,17 @@
+== Binary format for various texts ==
+
+1. SimpleArchive
+ - Same as the format of scenario.chk
+ - Very simple form of archive.
+
+2. Module : 'Linkable' things.
+ - A kind of SimpleArchive
+ :
+   - 'data' : raw data.                  --+
+   - 'prt ' : player relocation table.   --+-- act as a payload
+   - 'ort ' : offset relocation table.   --+
+
+   - 'impt' : import table               --+-- used for linking process
+   - 'expt' : export table               --+
+
+3. vtable 
