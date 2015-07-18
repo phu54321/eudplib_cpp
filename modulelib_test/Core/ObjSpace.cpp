@@ -1,4 +1,8 @@
 #include "ObjSpace.hpp"
+#include "EUDObject.hpp"
+
+typedef int* a;
+typedef int* a;
 
 ObjSpace::ObjSpace() {}
 ObjSpace::~ObjSpace()

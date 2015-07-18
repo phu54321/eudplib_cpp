@@ -1,15 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Expr.cpp" />
-    <ClCompile Include="ObjSpace.cpp" />
-    <ClCompile Include="ModuleWriterCollector.cpp" />
+    <ClInclude Include="typedef.hpp" />
+    <ClInclude Include="Core\EUDObject.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Module.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ModuleWriter.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ObjSpace.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Payload.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SimpleArchive.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger\Trigger.hpp">
+      <Filter>Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger\TriggerCondition.hpp">
+      <Filter>Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger\TriggerAction.hpp">
+      <Filter>Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger\TriggerConstants.hpp">
+      <Filter>Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ObjCollector.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PayloadWriter.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Expr.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Forward.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger\DefActions.hpp" />
+    <ClInclude Include="Trigger\TriggerTypes.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Expr.hpp" />
-    <ClInclude Include="ObjSpace.hpp" />
-    <ClInclude Include="EUDObject.hpp" />
-    <ClInclude Include="ModuleWriter.hpp" />
-    <ClInclude Include="ModuleWriterCollector.hpp" />
+    <Filter Include="Core">
+      <UniqueIdentifier>{37589898-16cc-449b-bae3-dcb50ec0b1a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trigger">
+      <UniqueIdentifier>{6d1134e2-0a33-4340-abe0-8cf0a2d3aa7a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Module.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ModuleWriter.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ObjCollector.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ObjSpace.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Payload.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SimpleArchive.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Expr.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Forward.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

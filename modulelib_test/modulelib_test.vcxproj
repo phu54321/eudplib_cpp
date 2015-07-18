@@ -76,16 +76,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="EUDObject.hpp" />
-    <ClInclude Include="Expr.hpp" />
-    <ClInclude Include="ModuleWriter.hpp" />
-    <ClInclude Include="ModuleWriterCollector.hpp" />
-    <ClInclude Include="ObjSpace.hpp" />
+    <ClInclude Include="Core\EUDObject.hpp" />
+    <ClInclude Include="Core\Expr.hpp" />
+    <ClInclude Include="Core\Forward.hpp" />
+    <ClInclude Include="Core\Module.hpp" />
+    <ClInclude Include="Core\ModuleWriter.hpp" />
+    <ClInclude Include="Core\ObjCollector.hpp" />
+    <ClInclude Include="Core\ObjSpace.hpp" />
+    <ClInclude Include="Core\PayloadWriter.hpp" />
+    <ClInclude Include="Core\Payload.hpp" />
+    <ClInclude Include="Core\SimpleArchive.hpp" />
+    <ClInclude Include="Trigger\DefActions.hpp" />
+    <ClInclude Include="Trigger\Trigger.hpp" />
+    <ClInclude Include="Trigger\TriggerAction.hpp" />
+    <ClInclude Include="Trigger\TriggerCondition.hpp" />
+    <ClInclude Include="Trigger\TriggerConstants.hpp" />
+    <ClInclude Include="Trigger\TriggerTypes.hpp" />
+    <ClInclude Include="typedef.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Expr.cpp" />
-    <ClCompile Include="ModuleWriterCollector.cpp" />
-    <ClCompile Include="ObjSpace.cpp" />
+    <ClCompile Include="Core\Expr.cpp" />
+    <ClCompile Include="Core\Module.cpp" />
+    <ClCompile Include="Core\ModuleWriter.cpp" />
+    <ClCompile Include="Core\ObjCollector.cpp" />
+    <ClCompile Include="Core\ObjSpace.cpp" />
+    <ClCompile Include="Core\Payload.cpp" />
+    <ClCompile Include="Core\SimpleArchive.cpp" />
+    <ClCompile Include="Core\Forward.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

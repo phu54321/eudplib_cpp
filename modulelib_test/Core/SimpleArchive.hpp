@@ -5,7 +5,7 @@
 #include <istream>
 #include <map>
 
-#include "typedef.hpp"
+#include "../typedef.hpp"
 
 
 class SimpleArchive

@@ -4,7 +4,7 @@
 #include "ObjSpace.hpp"
 #include <cstdint>
 
-class ModuleWriter;
+class ObjWriter;
 
 class EUDObject : public Expr
 {
@@ -13,5 +13,5 @@ public:
 	virtual ~EUDObject() {}
 
 	virtual uint32_t getObjectSize() const = 0;
-	virtual void writePayload(ModuleWriter* objw) = 0;
+	virtual void writePayload(ObjWriter* pw) = 0;
 };
